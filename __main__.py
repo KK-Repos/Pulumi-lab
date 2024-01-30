@@ -9,6 +9,10 @@ load_dotenv()
 linode_token = os.getenv('LINODE_TOKEN')
 instance_password = os.getenv('LINODE_PASSWORD')
 
+
+all_types = linode.get_instance_types()
+pulumi.export("typeIds", [__item.id for __item in all_types.types])
+
 # Pulumi configuration
 # pulumi_config = pulumi.Config()
 # linode_token = pulumi_config.require_secret('linodeToken')
