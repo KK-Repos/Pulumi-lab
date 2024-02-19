@@ -13,10 +13,6 @@ instance_password = os.getenv('LINODE_PASSWORD')
 all_types = linode.get_instance_types()
 pulumi.export("typeIds", [__item.id for __item in all_types.types])
 
-# Pulumi configuration
-# pulumi_config = pulumi.Config()
-# linode_token = pulumi_config.require_secret('linodeToken')
-
 linode_provider = linode.Provider('provider', token=linode_token)
 
 instance = linode.Instance('my-instance',
@@ -29,3 +25,7 @@ instance = linode.Instance('my-instance',
 # Export the IP address of the instance
 pulumi.export('ip', instance.ip_address)
 
+
+# Pulumi configuration
+# pulumi_config = pulumi.Config()
+# linode_token = pulumi_config.require_secret('linodeToken')
